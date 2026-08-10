@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VolunteerConnect.Views.PrivacyPage"
+             Title="Privacy Information">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label 
+                Text="Your Privacy Matters"
+                FontSize="28"
+                FontAttributes="Bold" />
+
+            <!-- What We Collect -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="What Information Do We Collect?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="• Your preferred name&#10;• Email address and/or phone number&#10;• Your availability for volunteering&#10;• Optional notes about your interests&#10;• Your privacy consent status"
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+
+            <!-- Why We Collect -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="Why Do We Collect This Information?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="We collect this information to:&#10;• Manage your volunteer registrations&#10;• Contact you about opportunities that match your availability&#10;• Ensure we have accurate information for coordination&#10;• Improve our service based on your feedback"
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+
+            <!-- How We Use -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="How Is Your Information Used?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="Your information is used solely for:&#10;• Processing and confirming your volunteer registrations&#10;• Communicating with you about registered opportunities&#10;• Managing volunteer assignments and schedules&#10;• Providing you with relevant opportunity recommendations"
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+
+            <!-- Where We Store -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="Where Is Your Information Stored?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Frame BorderColor="#FFC107" CornerRadius="10" Padding="15">
+                    <Label 
+                        Text="?? This prototype stores all data locally on your device. No information is sent to external servers or cloud services. Your data remains completely on your phone or tablet."
+                        FontSize="14"
+                        LineHeight="1.5"
+                        TextColor="#F57F17" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <!-- How to Correct -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="How Can You Correct Your Information?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="You can update your information at any time by:&#10;• Viewing your registration in 'My Registrations'&#10;• Editing your details directly in the app&#10;• Canceling and re-registering with updated information"
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+
+            <!-- How to Delete -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="How Can You Delete Your Information?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="You can delete your data by:&#10;• Canceling individual registrations from 'My Registrations'&#10;• Uninstalling the app (all local data will be removed)&#10;• Clearing the app's data through your device settings"
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+
+            <!-- Data Security -->
+            <Frame BorderColor="#4CAF50" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label 
+                        Text="? Your Data Is Secure"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#2E7D32" />
+                    <Label 
+                        Text="Because your data is stored locally on your device and not transmitted online, it is protected by your device's built-in security features."
+                        FontSize="13"
+                        LineHeight="1.4"
+                        TextColor="#2E7D32" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Contact -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="Questions About Privacy?"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+                <Label 
+                    Text="If you have any questions about how your information is handled, please contact us through the app's support section."
+                    FontSize="14"
+                    LineHeight="1.5" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

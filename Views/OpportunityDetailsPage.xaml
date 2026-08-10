@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VolunteerConnect.Views.OpportunityDetailsPage"
+             Title="Opportunity Details">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Image -->
+            <Image 
+                Source="{Binding Opportunity.ImageUrl}"
+                Aspect="AspectFill"
+                HeightRequest="250"
+                CornerRadius="10" />
+
+            <!-- Title -->
+            <Label 
+                Text="{Binding Opportunity.Title}"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <!-- Category and Date -->
+            <HorizontalStackLayout Spacing="10">
+                <Label 
+                    Text="{Binding Opportunity.Category}"
+                    FontSize="12"
+                    BackgroundColor="#E3F2FD"
+                    TextColor="#1976D2"
+                    Padding="8,4"
+                    CornerRadius="4" />
+                <Label 
+                    Text="{Binding Opportunity.DateTimeDisplay}"
+                    FontSize="12"
+                    TextColor="#666" />
+            </HorizontalStackLayout>
+
+            <!-- Location -->
+            <Label 
+                Text="{StringFormat='?? {0}', Binding Opportunity.Location}"
+                FontSize="14"
+                FontAttributes="Bold" />
+
+            <!-- Availability -->
+            <Frame BorderColor="#E0E0E0" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="5">
+                    <Label 
+                        Text="{Binding Opportunity.AvailabilityDisplay}"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{Binding Opportunity.IsAvailable, Converter={StaticResource AvailabilityColorConverter}}" />
+                    <Label 
+                        Text="{StringFormat='Available places: {0} / {1}', Binding Opportunity.AvailablePlaces, Binding Opportunity.TotalPlaces}"
+                        FontSize="12"
+                        TextColor="#666" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Full Description -->
+            <Label 
+                Text="About This Opportunity"
+                FontSize="18"
+                FontAttributes="Bold" />
+            <Label 
+                Text="{Binding Opportunity.FullDescription}"
+                FontSize="14"
+                LineHeight="1.4" />
+
+            <!-- Requirements -->
+            <Label 
+                Text="Requirements"
+                FontSize="18"
+                FontAttributes="Bold" />
+            <Label 
+                Text="{Binding Opportunity.Requirements}"
+                FontSize="14"
+                LineHeight="1.4" />
+
+            <!-- Register Button -->
+            <Button 
+                Text="Register Interest"
+                BackgroundColor="#4CAF50"
+                FontSize="16"
+                Padding="20"
+                CornerRadius="10"
+                Command="{Binding RegisterCommand}"
+                Margin="0,10,0,0"
+                IsEnabled="{Binding Opportunity.IsAvailable}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

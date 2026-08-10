@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VolunteerConnect.Views.OpportunitiesPage"
+             Title="Opportunities">
+
+    <VerticalStackLayout Spacing="0">
+        <!-- Search and Filter Bar -->
+        <Frame Padding="10" BorderColor="#E0E0E0">
+            <VerticalStackLayout Spacing="10">
+                <!-- Search Box -->
+                <SearchBar 
+                    x:Name="SearchBar"
+                    Placeholder="Search opportunities..."
+                    SearchCommand="{Binding SearchCommand}"
+                    SearchCommandParameter="{Binding Source={x:Reference SearchBar}, Path=Text}" />
+
+                <!-- Filter Options -->
+                <HorizontalStackLayout Spacing="5">
+                    <Picker 
+                        x:Name="CategoryPicker"
+                        Title="Category"
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding SelectedCategory}"
+                        SelectedIndexChanged="OnCategoryChanged"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <Picker 
+                        x:Name="LocationPicker"
+                        Title="Location"
+                        ItemsSource="{Binding Locations}"
+                        SelectedItem="{Binding SelectedLocation}"
+                        SelectedIndexChanged="OnLocationChanged"
+                        HorizontalOptions="FillAndExpand" />
+                </HorizontalStackLayout>
+
+                <!-- Sort Options -->
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Sort by:" VerticalOptions="Center" />
+                    <Picker 
+                        x:Name="SortPicker"
+                        Title="Date"
+                        ItemsSource="{Binding SortOptions}"
+                        SelectedItem="{Binding SelectedSort}"
+                        SelectedIndexChanged="OnSortChanged"
+                        HorizontalOptions="FillAndExpand" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Opportunities List -->
+        <CollectionView 
+            ItemsSource="{Binding Opportunities}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedOpportunity}"
+            SelectionChangedCommand="{Binding SelectOpportunityCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedOpportunity}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame 
+                        Margin="10" 
+                        Padding="15" 
+                        BorderColor="#E0E0E0"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <VerticalStackLayout Spacing="10">
+                            <!-- Title -->
+                            <Label 
+                                Text="{Binding Title}"
+                                FontSize="18"
+                                FontAttributes="Bold" />
+
+                            <!-- Category and Date -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label 
+                                    Text="{Binding Category}"
+                                    FontSize="12"
+                                    BackgroundColor="#E3F2FD"
+                                    TextColor="#1976D2"
+                                    Padding="8,4"
+                                    CornerRadius="4" />
+                                <Label 
+                                    Text="{Binding DateTimeDisplay}"
+                                    FontSize="12"
+                                    TextColor="#666" />
+                            </HorizontalStackLayout>
+
+                            <!-- Description -->
+                            <Label 
+                                Text="{Binding ShortDescription}"
+                                FontSize="14"
+                                LineHeight="1.3" />
+
+                            <!-- Location -->
+                            <Label 
+                                Text="{StringFormat='{0}', Binding Location}"
+                                FontSize="12"
+                                TextColor="#666" />
+
+                            <!-- Availability -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label 
+                                    Text="{Binding AvailabilityDisplay}"
+                                    FontSize="12"
+                                    TextColor="{Binding IsAvailable, Converter={StaticResource AvailabilityColorConverter}}" />
+                                <Label 
+                                    Text="{StringFormat='{0}/{1} places', Binding AvailablePlaces, Binding TotalPlaces}"
+                                    FontSize="12"
+                                    TextColor="#999" />
+                            </HorizontalStackLayout>
+
+                            <!-- View Details Button -->
+                            <Button 
+                                Text="View Details"
+                                BackgroundColor="#2196F3"
+                                Margin="0,5,0,0" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

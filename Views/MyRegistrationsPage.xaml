@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VolunteerConnect.Views.MyRegistrationsPage"
+             Title="My Registrations">
+
+    <VerticalStackLayout Spacing="0">
+        <!-- Empty State -->
+        <VerticalStackLayout 
+            Padding="20" 
+            Spacing="15"
+            VerticalOptions="CenterAndExpand"
+            IsVisible="{Binding HasNoRegistrations, Converter={StaticResource InvertedBoolConverter}}">
+            <Label 
+                Text="No Registrations Yet"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
+            <Label 
+                Text="Browse opportunities to register for volunteer work."
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="#666" />
+            <Button 
+                Text="Find Opportunities"
+                BackgroundColor="#2196F3"
+                Command="{Binding BrowseCommand}" />
+        </VerticalStackLayout>
+
+        <!-- Registrations List -->
+        <CollectionView 
+            ItemsSource="{Binding Registrations}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedRegistration}"
+            SelectionChangedCommand="{Binding SelectRegistrationCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedRegistration}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame 
+                        Margin="10" 
+                        Padding="15" 
+                        BorderColor="#E0E0E0"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <VerticalStackLayout Spacing="10">
+                            <!-- Opportunity Title -->
+                            <Label 
+                                Text="{Binding Opportunity.Title}"
+                                FontSize="18"
+                                FontAttributes="Bold" />
+
+                            <!-- Registration Date -->
+                            <Label 
+                                Text="{StringFormat='Registered: {0:ddd, MMM d, yyyy}', Binding RegistrationDate}"
+                                FontSize="12"
+                                TextColor="#666" />
+
+                            <!-- Opportunity Date and Time -->
+                            <Label 
+                                Text="{Binding Opportunity.DateTimeDisplay}"
+                                FontSize="12"
+                                TextColor="#666" />
+
+                            <!-- Location -->
+                            <Label 
+                                Text="{StringFormat='?? {0}', Binding Opportunity.Location}"
+                                FontSize="12"
+                                TextColor="#666" />
+
+                            <!-- Your Info Summary -->
+                            <Label 
+                                Text="{StringFormat='Contact: {0}', Binding ContactEmail}"
+                                FontSize="12"
+                                TextColor="#999" />
+
+                            <!-- Actions -->
+                            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                <Button 
+                                    Text="View Details"
+                                    BackgroundColor="#2196F3"
+                                    FontSize="12"
+                                    Padding="10,5"
+                                    HorizontalOptions="FillAndExpand"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}"
+                                    CommandParameter="{Binding .}" />
+                                <Button 
+                                    Text="Cancel"
+                                    BackgroundColor="#F44336"
+                                    FontSize="12"
+                                    Padding="10,5"
+                                    HorizontalOptions="FillAndExpand"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CancelRegistrationCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

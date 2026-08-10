@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VolunteerConnect.HomePage"
+    Title="VolunteerConnect">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+
+            <!-- Application Name -->
+            <Label
+                Text="Volunteer Connect"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <!-- Application Description -->
+            <Label
+                Text="Discover local volunteer opportunities and manage your expressions of interest."
+                FontSize="16"
+                HorizontalTextAlignment="Center" />
+
+            <!-- Featured Opportunity -->
+            <Label
+                Text="Featured Opportunity"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <Border
+                Padding="20"
+                StrokeShape="RoundRectangle 15">
+
+                <VerticalStackLayout
+                    Spacing="10">
+
+                    <Label
+                        x:Name="FeaturedTitleLabel"
+                        Text="Loading..."
+                        FontSize="22"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        x:Name="FeaturedCategoryLabel"
+                        FontSize="16" />
+
+                    <Label
+                        x:Name="FeaturedDateLabel"
+                        FontSize="16" />
+
+                    <Label
+                        x:Name="FeaturedLocationLabel"
+                        FontSize="16" />
+
+                    <Label
+                        x:Name="FeaturedDescriptionLabel"
+                        FontSize="15" />
+
+                    <Button
+                        Text="View Details"
+                        Clicked="ViewFeaturedDetails_Clicked" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Number of Opportunities -->
+            <Label
+                x:Name="OpportunityCountLabel"
+                Text="Available Opportunities"
+                FontSize="20"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <!-- Navigation -->
+            <Button
+                Text="Browse Opportunities"
+                Clicked="BrowseOpportunities_Clicked" />
+
+            <Button
+                Text="My Registrations"
+                Clicked="MyRegistrations_Clicked" />
+
+            <Button
+                Text="Privacy Information"
+                Clicked="PrivacyInformation_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
