@@ -1,112 +1,152 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.RegistrationPage"
-             Title="Register Interest">
+
+<ContentPage
+    x:Class="VolunteerConnect.Views.RegistrationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Register Interest">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <!-- Opportunity Summary -->
-            <Frame BorderColor="#2196F3" CornerRadius="10" Padding="15">
-                <VerticalStackLayout Spacing="10">
-                    <Label 
-                        Text="Registering for:"
-                        FontSize="12"
-                        TextColor="#666" />
-                    <Label 
-                        Text="{Binding Opportunity.Title}"
-                        FontSize="18"
-                        FontAttributes="Bold" />
-                    <Label 
-                        Text="{Binding Opportunity.DateTimeDisplay}"
-                        FontSize="12"
-                        TextColor="#666" />
-                </VerticalStackLayout>
-            </Frame>
 
-            <!-- Registration Form -->
-            <Label 
-                Text="Your Information"
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Register Your Interest"
+                FontSize="28"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Opportunity"
                 FontSize="18"
                 FontAttributes="Bold" />
 
-            <!-- Preferred Name -->
-            <Label Text="Preferred Name *" FontSize="14" FontAttributes="Bold" />
-            <Entry 
-                Placeholder="Enter your name"
-                Text="{Binding Registration.PreferredName}"
-                BorderColor="#E0E0E0"
-                Padding="10" />
+            <Label
+                x:Name="OpportunityNameLabel"
+                Text="Loading..."
+                FontSize="18" />
 
-            <!-- Contact Method -->
-            <Label Text="Contact Method *" FontSize="14" FontAttributes="Bold" />
-            <Picker 
-                Title="Select contact method"
-                ItemsSource="{Binding ContactMethods}"
-                SelectedItem="{Binding SelectedContactMethod}"
-                SelectedIndexChanged="OnContactMethodChanged" />
+            <Label
+                Text="Your Information"
+                FontSize="22"
+                FontAttributes="Bold"
+                Margin="0,10,0,0" />
+
+            <!-- Preferred Name -->
+
+            <Label
+                Text="Preferred Name *"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="PreferredNameEntry"
+                Placeholder="Enter your preferred name"
+                MaxLength="50" />
 
             <!-- Email -->
-            <Label Text="Email Address *" FontSize="14" FontAttributes="Bold" />
-            <Entry 
-                Placeholder="your.email@example.com"
-                Text="{Binding Registration.ContactEmail}"
-                Keyboard="Email"
-                BorderColor="#E0E0E0"
-                Padding="10" />
 
-            <!-- Phone (Optional) -->
-            <Label Text="Phone Number (Optional)" FontSize="14" FontAttributes="Bold" />
-            <Entry 
-                Placeholder="(555) 000-0000"
-                Text="{Binding Registration.ContactPhone}"
+            <Label
+                Text="Email Address *"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="EmailEntry"
+                Placeholder="example@email.com"
+                Keyboard="Email"
+                MaxLength="100" />
+
+            <!-- Phone -->
+
+            <Label
+                Text="Phone Number"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="PhoneEntry"
+                Placeholder="Enter your phone number"
                 Keyboard="Telephone"
-                BorderColor="#E0E0E0"
-                Padding="10" />
+                MaxLength="20" />
 
             <!-- Availability -->
-            <Label Text="Your Availability *" FontSize="14" FontAttributes="Bold" />
-            <Entry 
-                Placeholder="e.g., Weekends only / Full day"
-                Text="{Binding Registration.Availability}"
-                BorderColor="#E0E0E0"
-                Padding="10" />
 
-            <!-- Notes -->
-            <Label Text="Additional Notes (Optional)" FontSize="14" FontAttributes="Bold" />
-            <Editor 
-                Placeholder="Tell us anything else we should know..."
-                Text="{Binding Registration.Notes}"
-                HeightRequest="80"
-                BorderColor="#E0E0E0"
-                Padding="10" />
+            <Label
+                Text="Availability *"
+                FontAttributes="Bold" />
 
-            <!-- Privacy Consent -->
-            <Frame BorderColor="#FFC107" CornerRadius="10" Padding="15">
-                <VerticalStackLayout Spacing="10">
-                    <CheckBox 
-                        IsChecked="{Binding Registration.PrivacyConsent}"
-                        VerticalOptions="Start" />
-                    <Label 
-                        Text="I agree that my information will be collected and stored locally on this device for registration purposes. I can request my data to be deleted at any time. See our Privacy Policy for more details."
-                        FontSize="12"
-                        LineHeight="1.3" />
+            <Picker
+                x:Name="AvailabilityPicker"
+                Title="Select your availability">
+
+                <Picker.Items>
+                    <x:String>Weekdays</x:String>
+                    <x:String>Weekends</x:String>
+                    <x:String>Evenings</x:String>
+                    <x:String>Flexible</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <!-- Optional Note -->
+
+            <Label
+                Text="Optional Note"
+                FontAttributes="Bold" />
+
+            <Editor
+                x:Name="NoteEditor"
+                Placeholder="Anything else you'd like us to know?"
+                MaxLength="500"
+                AutoSize="TextChanges"
+                HeightRequest="120" />
+
+            <!-- Privacy -->
+
+            <Border
+                Padding="15"
+                StrokeShape="RoundRectangle 10">
+
+                <VerticalStackLayout
+                    Spacing="10">
+
+                    <Label
+                        Text="Privacy Consent"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Your contact details are collected only so the community organisation can respond to your volunteer registration. Your information is stored locally on this device." />
+
+                    <Label
+                        Text="Do you Consent to having your information collected and used for this registration?"/>
+
+                    <HorizontalStackLayout
+                        Spacing="10">
+
+                        <CheckBox
+                            x:Name="PrivacyConsentCheckBox" />
+
+                        <Label
+                            Text="I consent."
+                            VerticalOptions="Center"
+                            HorizontalOptions="Fill" />
+
+                    </HorizontalStackLayout>
+
                 </VerticalStackLayout>
-            </Frame>
 
-            <!-- Buttons -->
-            <HorizontalStackLayout Spacing="10">
-                <Button 
-                    Text="Cancel"
-                    BackgroundColor="#999"
-                    HorizontalOptions="FillAndExpand"
-                    Command="{Binding CancelCommand}" />
-                <Button 
-                    Text="Submit Registration"
-                    BackgroundColor="#4CAF50"
-                    HorizontalOptions="FillAndExpand"
-                    Command="{Binding SubmitCommand}" />
-            </HorizontalStackLayout>
+            </Border>
+
+            <!-- Save -->
+
+            <Button
+                x:Name="SaveButton"
+                Text="Submit Registration"
+                FontSize="18"
+                Clicked="SaveButton_Clicked" />
+
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>

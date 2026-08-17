@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <Shell
     x:Class="VolunteerConnect.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:VolunteerConnect.Views"
+    Shell.FlyoutBehavior="Flyout">
+
+    <FlyoutItem Title="Home">
 
         <ShellContent
             Title="Home"
-            Icon="home_icon.png"
-            ContentTemplate="{DataTemplate local:HomePage}"
-            Route="home" />
+            ContentTemplate="{DataTemplate views:HomePage}"
+            Route="HomePage" />
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Opportunities">
 
         <ShellContent
             Title="Opportunities"
-            Icon="search_icon.png"
-            ContentTemplate="{DataTemplate local:OpportunitiesPage}"
-            Route="opportunities" />
+            ContentTemplate="{DataTemplate views:OpportunitiesPage}"
+            Route="OpportunitiesPage" />
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="My Registrations">
 
         <ShellContent
             Title="My Registrations"
-            Icon="bookmark_icon.png"
-            ContentTemplate="{DataTemplate local:MyRegistrationsPage}"
-            Route="registrations" />
+            ContentTemplate="{DataTemplate views:MyRegistrationsPage}"
+            Route="MyRegistrationsPage" />
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Privacy Information">
 
         <ShellContent
-            Title="Privacy"
-            Icon="info_icon.png"
-            ContentTemplate="{DataTemplate local:PrivacyPage}"
-            Route="privacy" />
+            Title="Privacy Information"
+            ContentTemplate="{DataTemplate views:PrivacyPage}"
+            Route="PrivacyPage" />
+
+    </FlyoutItem>
+
 </Shell>

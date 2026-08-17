@@ -1,7 +1,7 @@
 using VolunteerConnect.Models;
 using VolunteerConnect.Services;
 
-namespace VolunteerConnect;
+namespace VolunteerConnect.Views;
 
 public partial class HomePage : ContentPage
 {

@@ -1,123 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.OpportunitiesPage"
-             Title="Opportunities">
 
-    <VerticalStackLayout Spacing="0">
-        <!-- Search and Filter Bar -->
-        <Frame Padding="10" BorderColor="#E0E0E0">
-            <VerticalStackLayout Spacing="10">
-                <!-- Search Box -->
-                <SearchBar 
-                    x:Name="SearchBar"
-                    Placeholder="Search opportunities..."
-                    SearchCommand="{Binding SearchCommand}"
-                    SearchCommandParameter="{Binding Source={x:Reference SearchBar}, Path=Text}" />
+<ContentPage
+    x:Class="VolunteerConnect.Views.OpportunitiesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Opportunities">
 
-                <!-- Filter Options -->
-                <HorizontalStackLayout Spacing="5">
-                    <Picker 
-                        x:Name="CategoryPicker"
-                        Title="Category"
-                        ItemsSource="{Binding Categories}"
-                        SelectedItem="{Binding SelectedCategory}"
-                        SelectedIndexChanged="OnCategoryChanged"
-                        HorizontalOptions="FillAndExpand" />
+    <ScrollView>
+    <VerticalStackLayout
+        Padding="15"
+        Spacing="10">
 
-                    <Picker 
-                        x:Name="LocationPicker"
-                        Title="Location"
-                        ItemsSource="{Binding Locations}"
-                        SelectedItem="{Binding SelectedLocation}"
-                        SelectedIndexChanged="OnLocationChanged"
-                        HorizontalOptions="FillAndExpand" />
-                </HorizontalStackLayout>
+        <Label
+            Text="Volunteer Opportunities"
+            FontSize="28"
+            FontAttributes="Bold" />
 
-                <!-- Sort Options -->
-                <HorizontalStackLayout Spacing="5">
-                    <Label Text="Sort by:" VerticalOptions="Center" />
-                    <Picker 
-                        x:Name="SortPicker"
-                        Title="Date"
-                        ItemsSource="{Binding SortOptions}"
-                        SelectedItem="{Binding SelectedSort}"
-                        SelectedIndexChanged="OnSortChanged"
-                        HorizontalOptions="FillAndExpand" />
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
-        </Frame>
+        <!-- Search -->
+        <SearchBar
+            x:Name="SearchBar"
+            Placeholder="Search opportunities..."
+            TextChanged="SearchBar_TextChanged" />
 
-        <!-- Opportunities List -->
-        <CollectionView 
-            ItemsSource="{Binding Opportunities}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedOpportunity}"
-            SelectionChangedCommand="{Binding SelectOpportunityCommand}"
-            SelectionChangedCommandParameter="{Binding SelectedOpportunity}">
+        <!-- Category Filter -->
+        <Picker
+            x:Name="CategoryPicker"
+            Title="Filter by category"
+            SelectedIndexChanged="CategoryPicker_SelectedIndexChanged" />
+
+        <!-- Opportunities -->
+        <CollectionView
+            x:Name="OpportunitiesCollection"
+            SelectionMode="None">
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame 
-                        Margin="10" 
-                        Padding="15" 
-                        BorderColor="#E0E0E0"
-                        CornerRadius="10"
-                        HasShadow="True">
-                        <VerticalStackLayout Spacing="10">
-                            <!-- Title -->
-                            <Label 
+
+                    <Border
+                        Margin="5"
+                        Padding="15"
+                        StrokeShape="RoundRectangle 12">
+
+                        <VerticalStackLayout
+                            Spacing="8">
+
+                            <Label
                                 Text="{Binding Title}"
-                                FontSize="18"
+                                FontSize="20"
                                 FontAttributes="Bold" />
 
-                            <!-- Category and Date -->
-                            <HorizontalStackLayout Spacing="10">
-                                <Label 
-                                    Text="{Binding Category}"
-                                    FontSize="12"
-                                    BackgroundColor="#E3F2FD"
-                                    TextColor="#1976D2"
-                                    Padding="8,4"
-                                    CornerRadius="4" />
-                                <Label 
-                                    Text="{Binding DateTimeDisplay}"
-                                    FontSize="12"
-                                    TextColor="#666" />
-                            </HorizontalStackLayout>
+                            <Label
+                                Text="{Binding Category}"
+                                FontSize="14" />
 
-                            <!-- Description -->
-                            <Label 
+                            <Label
+                                Text="{Binding Date, StringFormat='{}{0:dd MMMM yyyy}'}"
+                                FontSize="14" />
+
+                            <Label
+                                Text="{Binding Time}"
+                                FontSize="14" />
+
+                            <Label
+                                Text="{Binding Location}"
+                                FontSize="14" />
+
+                            <Label
                                 Text="{Binding ShortDescription}"
-                                FontSize="14"
-                                LineHeight="1.3" />
+                                FontSize="14" />
 
-                            <!-- Location -->
-                            <Label 
-                                Text="{StringFormat='{0}', Binding Location}"
-                                FontSize="12"
-                                TextColor="#666" />
+                            <Label
+                                Text="{Binding AvailablePlaces, StringFormat='{}{0} places available'}"
+                                FontSize="14" />
 
-                            <!-- Availability -->
-                            <HorizontalStackLayout Spacing="10">
-                                <Label 
-                                    Text="{Binding AvailabilityDisplay}"
-                                    FontSize="12"
-                                    TextColor="{Binding IsAvailable, Converter={StaticResource AvailabilityColorConverter}}" />
-                                <Label 
-                                    Text="{StringFormat='{0}/{1} places', Binding AvailablePlaces, Binding TotalPlaces}"
-                                    FontSize="12"
-                                    TextColor="#999" />
-                            </HorizontalStackLayout>
-
-                            <!-- View Details Button -->
-                            <Button 
+                            <Button
                                 Text="View Details"
-                                BackgroundColor="#2196F3"
-                                Margin="0,5,0,0" />
+                                Clicked="ViewDetails_Clicked"
+                                CommandParameter="{Binding .}" />
+
                         </VerticalStackLayout>
-                    </Frame>
+
+                    </Border>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
         </CollectionView>
+
     </VerticalStackLayout>
+
+    </ScrollView>
 </ContentPage>

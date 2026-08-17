@@ -6,7 +6,15 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new NavigationPage(
-            new HomePage());
+        MainPage = new AppShell();
+
+        RunAutomatedTests();
+    }
+
+    private async void RunAutomatedTests()
+    {
+        var tests = new AutomatedTesting();
+
+        await tests.RunAllTests();
     }
 }
