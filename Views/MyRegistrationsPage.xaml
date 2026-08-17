@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="My Registrations">
 
+    <ScrollView>
     <VerticalStackLayout
         Padding="15"
         Spacing="10">
@@ -103,5 +104,7 @@
         </CollectionView>
 
     </VerticalStackLayout>
+
+    </ScrollView>
 
 </ContentPage>
