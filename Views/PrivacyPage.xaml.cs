@@ -1,10 +1,9 @@
-namespace VolunteerConnect.Views
+namespace VolunteerConnect.Views;
+
+public partial class PrivacyPage : ContentPage
 {
-    public partial class PrivacyPage : ContentPage
+    public PrivacyPage()
     {
-        public PrivacyPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -39,6 +39,7 @@ public class DatabaseService
         {
             new Opportunity
             {
+                Image = "beach_cleanup.png",
                 Title = "Beach Cleanup",
                 Category = "Environment",
                 Date = new DateTime(2026, 8, 20),
@@ -51,12 +52,12 @@ public class DatabaseService
                     "the beach and surrounding areas.",
                 Requirements =
                     "Suitable for ages 16+. Wear suitable outdoor clothing.",
-                AvailablePlaces = 15,
-                Image = "beach_cleanup.png"
+                AvailablePlaces = 15
             },
 
             new Opportunity
             {
+                Image = "food_bank.png",
                 Title = "Community Food Bank Helper",
                 Category = "Community",
                 Date = new DateTime(2026, 8, 22),
@@ -69,12 +70,12 @@ public class DatabaseService
                     "and organising donated food.",
                 Requirements =
                     "No previous experience required.",
-                AvailablePlaces = 8,
-                Image = "food_bank.png"
+                AvailablePlaces = 8
             },
 
             new Opportunity
             {
+                Image = "community_garden.png",
                 Title = "Community Garden",
                 Category = "Environment",
                 Date = new DateTime(2026, 8, 24),
@@ -87,8 +88,7 @@ public class DatabaseService
                     "garden beds and shared spaces.",
                 Requirements =
                     "Suitable for beginners.",
-                AvailablePlaces = 5,
-                Image = "community_garden.png"
+                AvailablePlaces = 5
             }
         };
 

@@ -1,101 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.MyRegistrationsPage"
-             Title="My Registrations">
 
-    <VerticalStackLayout Spacing="0">
-        <!-- Empty State -->
-        <VerticalStackLayout 
-            Padding="20" 
-            Spacing="15"
-            VerticalOptions="CenterAndExpand"
-            IsVisible="{Binding HasNoRegistrations, Converter={StaticResource InvertedBoolConverter}}">
-            <Label 
-                Text="No Registrations Yet"
-                FontSize="24"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center" />
-            <Label 
-                Text="Browse opportunities to register for volunteer work."
-                FontSize="14"
-                HorizontalTextAlignment="Center"
-                TextColor="#666" />
-            <Button 
-                Text="Find Opportunities"
-                BackgroundColor="#2196F3"
-                Command="{Binding BrowseCommand}" />
-        </VerticalStackLayout>
+<ContentPage
+    x:Class="VolunteerConnect.Views.MyRegistrationsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="My Registrations">
 
-        <!-- Registrations List -->
-        <CollectionView 
-            ItemsSource="{Binding Registrations}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedRegistration}"
-            SelectionChangedCommand="{Binding SelectRegistrationCommand}"
-            SelectionChangedCommandParameter="{Binding SelectedRegistration}">
+    <VerticalStackLayout
+        Padding="15"
+        Spacing="10">
+
+        <Label
+            Text="My Registrations"
+            FontSize="28"
+            FontAttributes="Bold" />
+
+        <Label
+            x:Name="RegistrationCountLabel"
+            Text="Loading registrations..."
+            FontSize="16" />
+
+        <CollectionView
+            x:Name="RegistrationsCollection"
+            SelectionMode="None">
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="30"
+                    Spacing="15">
+
+                    <Label
+                        Text="No registrations yet."
+                        FontSize="20"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Your volunteer registrations will appear here after you register for an opportunity."
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
-                    <Frame 
-                        Margin="10" 
-                        Padding="15" 
-                        BorderColor="#E0E0E0"
-                        CornerRadius="10"
-                        HasShadow="True">
-                        <VerticalStackLayout Spacing="10">
-                            <!-- Opportunity Title -->
-                            <Label 
-                                Text="{Binding Opportunity.Title}"
-                                FontSize="18"
+
+                    <Border
+                        Margin="5"
+                        Padding="15"
+                        StrokeShape="RoundRectangle 12">
+
+                        <VerticalStackLayout
+                            Spacing="8">
+
+                            <Label
+                                Text="{Binding OpportunityTitle}"
+                                FontSize="20"
                                 FontAttributes="Bold" />
 
-                            <!-- Registration Date -->
-                            <Label 
-                                Text="{StringFormat='Registered: {0:ddd, MMM d, yyyy}', Binding RegistrationDate}"
-                                FontSize="12"
-                                TextColor="#666" />
+                            <Label
+                                Text="{Binding PreferredName, StringFormat='Name: {0}'}"
+                                FontSize="15" />
 
-                            <!-- Opportunity Date and Time -->
-                            <Label 
-                                Text="{Binding Opportunity.DateTimeDisplay}"
-                                FontSize="12"
-                                TextColor="#666" />
+                            <Label
+                                Text="{Binding Availability, StringFormat='Availability: {0}'}"
+                                FontSize="15" />
 
-                            <!-- Location -->
-                            <Label 
-                                Text="{StringFormat='?? {0}', Binding Opportunity.Location}"
-                                FontSize="12"
-                                TextColor="#666" />
+                            <Label
+                                Text="{Binding Email, StringFormat='Email: {0}'}"
+                                FontSize="15" />
 
-                            <!-- Your Info Summary -->
-                            <Label 
-                                Text="{StringFormat='Contact: {0}', Binding ContactEmail}"
-                                FontSize="12"
-                                TextColor="#999" />
+                            <HorizontalStackLayout
+                                Spacing="10">
 
-                            <!-- Actions -->
-                            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
-                                <Button 
-                                    Text="View Details"
-                                    BackgroundColor="#2196F3"
-                                    FontSize="12"
-                                    Padding="10,5"
-                                    HorizontalOptions="FillAndExpand"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}"
-                                    CommandParameter="{Binding .}" />
-                                <Button 
-                                    Text="Cancel"
-                                    BackgroundColor="#F44336"
-                                    FontSize="12"
-                                    Padding="10,5"
-                                    HorizontalOptions="FillAndExpand"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CancelRegistrationCommand}"
-                                    CommandParameter="{Binding .}" />
+                                <Button
+                                    Text="View"
+                                    Clicked="ViewRegistration_Clicked"
+                                    CommandParameter="{Binding .}"/>
+
+                                <Button
+                                    Text="Edit"
+                                    Clicked="EditRegistration_Clicked"
+                                    CommandParameter="{Binding .}"/>
+
+                                <Button
+                                    Text="Delete"
+                                    Clicked="DeleteRegistration_Clicked"
+                                    CommandParameter="{Binding .}"/>
+
                             </HorizontalStackLayout>
+
                         </VerticalStackLayout>
-                    </Frame>
+
+                    </Border>
+
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
+
         </CollectionView>
+
     </VerticalStackLayout>
+
 </ContentPage>

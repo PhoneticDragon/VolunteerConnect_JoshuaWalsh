@@ -7,6 +7,8 @@ public class Opportunity
     [PrimaryKey, AutoIncrement]
     public int OpportunityId { get; set; }
 
+    public string Image { get; set; } = "";
+
     public string Title { get; set; } = string.Empty;
 
     public string Category { get; set; } = string.Empty;
@@ -24,6 +26,4 @@ public class Opportunity
     public string Requirements { get; set; } = string.Empty;
 
     public int AvailablePlaces { get; set; }
-
-    public string Image { get; set; } = string.Empty;
 }

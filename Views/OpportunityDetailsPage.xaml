@@ -1,90 +1,89 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.OpportunityDetailsPage"
-             Title="Opportunity Details">
+
+<ContentPage
+    x:Class="VolunteerConnect.Views.OpportunityDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Opportunity Details">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
             <!-- Image -->
-            <Image 
-                Source="{Binding Opportunity.ImageUrl}"
-                Aspect="AspectFill"
-                HeightRequest="250"
-                CornerRadius="10" />
+            <Image
+                Source="{Binding Image}"
+                HeightRequest="220"
+                Aspect="AspectFill" />
 
             <!-- Title -->
-            <Label 
-                Text="{Binding Opportunity.Title}"
-                FontSize="24"
+            <Label
+                x:Name="TitleLabel"
+                Text="Loading..."
+                FontSize="30"
                 FontAttributes="Bold" />
 
-            <!-- Category and Date -->
-            <HorizontalStackLayout Spacing="10">
-                <Label 
-                    Text="{Binding Opportunity.Category}"
-                    FontSize="12"
-                    BackgroundColor="#E3F2FD"
-                    TextColor="#1976D2"
-                    Padding="8,4"
-                    CornerRadius="4" />
-                <Label 
-                    Text="{Binding Opportunity.DateTimeDisplay}"
-                    FontSize="12"
-                    TextColor="#666" />
-            </HorizontalStackLayout>
+            <!-- Category -->
+            <Label
+                x:Name="CategoryLabel"
+                FontSize="18" />
+
+            <!-- Date -->
+            <Label
+                x:Name="DateLabel"
+                FontSize="16" />
+
+            <!-- Time -->
+            <Label
+                x:Name="TimeLabel"
+                FontSize="16" />
 
             <!-- Location -->
-            <Label 
-                Text="{StringFormat='?? {0}', Binding Opportunity.Location}"
-                FontSize="14"
-                FontAttributes="Bold" />
+            <Label
+                x:Name="LocationLabel"
+                FontSize="16" />
 
-            <!-- Availability -->
-            <Frame BorderColor="#E0E0E0" CornerRadius="10" Padding="15">
-                <VerticalStackLayout Spacing="5">
-                    <Label 
-                        Text="{Binding Opportunity.AvailabilityDisplay}"
-                        FontSize="14"
-                        FontAttributes="Bold"
-                        TextColor="{Binding Opportunity.IsAvailable, Converter={StaticResource AvailabilityColorConverter}}" />
-                    <Label 
-                        Text="{StringFormat='Available places: {0} / {1}', Binding Opportunity.AvailablePlaces, Binding Opportunity.TotalPlaces}"
-                        FontSize="12"
-                        TextColor="#666" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <!-- Full Description -->
-            <Label 
-                Text="About This Opportunity"
+            <!-- Available Places -->
+            <Label
+                x:Name="PlacesLabel"
                 FontSize="18"
                 FontAttributes="Bold" />
-            <Label 
-                Text="{Binding Opportunity.FullDescription}"
-                FontSize="14"
-                LineHeight="1.4" />
+
+            <!-- Description -->
+            <Label
+                Text="About This Opportunity"
+                FontSize="22"
+                FontAttributes="Bold"
+                Margin="0,10,0,0" />
+
+            <Label
+                x:Name="DescriptionLabel"
+                FontSize="16"
+                LineBreakMode="WordWrap" />
 
             <!-- Requirements -->
-            <Label 
-                Text="Requirements"
-                FontSize="18"
-                FontAttributes="Bold" />
-            <Label 
-                Text="{Binding Opportunity.Requirements}"
-                FontSize="14"
-                LineHeight="1.4" />
+            <Label
+                Text="Volunteer Requirements"
+                FontSize="22"
+                FontAttributes="Bold"
+                Margin="0,10,0,0" />
 
-            <!-- Register Button -->
-            <Button 
-                Text="Register Interest"
-                BackgroundColor="#4CAF50"
+            <Label
+                x:Name="RequirementsLabel"
                 FontSize="16"
-                Padding="20"
-                CornerRadius="10"
-                Command="{Binding RegisterCommand}"
-                Margin="0,10,0,0"
-                IsEnabled="{Binding Opportunity.IsAvailable}" />
+                LineBreakMode="WordWrap" />
+
+            <!-- Register -->
+            <Button
+                x:Name="RegisterButton"
+                Text="Register Interest"
+                FontSize="18"
+                Clicked="RegisterButton_Clicked" />
+
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>
